@@ -11,7 +11,8 @@ instance.interceptors.response.use(
 }
 function requestHandler(request) {
   requestList.push(request);
-  _.debounce( batchRequest(requestList), 100 );
+  let requestCall = _.debounce( batchRequest(requestList), 100 );
+  return requestCall;
 }
 function responsehandler(response) {
   if (response.length > 0) {
