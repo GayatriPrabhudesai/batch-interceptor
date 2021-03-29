@@ -11,8 +11,8 @@ instance.interceptors.response.use(
 }
 function requestHandler(request) {
   requestList.push(request);
-  let requestCall = _.debounce( batchRequest(requestList), 100 );
-  return requestCall;
+  let requestCall = _.debounce(batchRequest, 100 );
+  return requestCall();
 }
 function responsehandler(response) {
   if (response.length > 0) {
@@ -23,7 +23,7 @@ function responsehandler(response) {
 function errorHandler(error) {
  return Promise.reject(error);
 }
-function batchRequest(requests) {
-  return requests;
+function batchRequest() {
+  return requestList;
 }
 export default batchInterceptor; 
